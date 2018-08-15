@@ -49,6 +49,8 @@ namespace LetterMasters.Features.Encode
                 return response;
             }
 
+            response.IsInputValid = true;
+
             var inputAsBytes = System.Text.Encoding.UTF8.GetBytes(input);
             var inputEncoded = Convert.ToBase64String(inputAsBytes);
             response.Content = inputEncoded;

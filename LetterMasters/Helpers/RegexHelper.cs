@@ -33,18 +33,19 @@ namespace LetterMasters.Helpers
             var response = new Response();
             var getNonAlphabeticCharactersResponse = GetNonAlphabeticCharacters(input);
 
-            response.IsSuccess = getNonAlphabeticCharactersResponse.Content.Any();
+            response.IsSuccess = !getNonAlphabeticCharactersResponse.Content.Any();
             return response;
         }
 
         private static Response<List<string>> GetNonAlphabeticCharacters(string input)
         {
             var response = new Response<List<string>>();
-            const string pattern = @"/[^a-zA-Z]";
+            const string pattern = @"[^a-zA-Z]";
 
             var matches = GetDistinctMatches(input, pattern);
 
             response.Content = matches;
+            response.IsSuccess = true;
             return response;
         }
 

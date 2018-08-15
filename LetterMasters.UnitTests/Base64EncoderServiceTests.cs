@@ -32,7 +32,8 @@ namespace LetterMasters.UnitTests
 
             result.IsSuccess.ShouldBeFalse();
             result.Errors.ShouldContain(a => a.Message == ErrorMessages.Base64EncoderService.MultipleWordsExceptionMessage);
-            result.Errors.ShouldHaveSingleItem();
+            result.Errors.ShouldContain(a => a.Message == ErrorMessages.Base64EncoderService.NonAlpahabeticCharactersExceptionMessage);
+            result.Errors.Count.ShouldBe(2);
             result.Content.ShouldBe(expected);
         }
 
